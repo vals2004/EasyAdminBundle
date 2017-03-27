@@ -1,11 +1,15 @@
 {
-    "name": "javiereguiluz/easyadmin-bundle",
+    "name": "vals2004/easyadmin-bundle",
     "type": "symfony-bundle",
     "description": "Admin generator for Symfony applications",
     "keywords": ["backend", "admin", "generator"],
     "homepage": "https://github.com/javiereguiluz/EasyAdminBundle",
     "license": "MIT",
     "authors": [
+        {
+            "name": "Valeriy Zavolodko",
+            "email": "vals2004@gmail.com"
+        },
         {
             "name": "Javier Eguiluz",
             "email": "javiereguiluz@gmail.com"
