@@ -289,10 +289,11 @@ class EasyAdminTwigExtension extends \Twig_Extension
      *
      * @param string $view
      * @param string $entityName
+     * @param Entity $entity
      *
      * @return array
      */
-    public function getActionsForItem($view, $entityName)
+    public function getActionsForItem($view, $entityName, $entity =null)
     {
         try {
             $entityConfig = $this->configManager->getEntityConfig($entityName);
@@ -310,6 +311,16 @@ class EasyAdminTwigExtension extends \Twig_Extension
             'show' => array(),
         );
         $excludedActions = $actionsExcludedForItems[$view];
+
+        if ($entity) {
+            $viewActions = array_filter($viewActions, function ($action) use ($entity) {
+                if (array_key_exists('condition', $action)) {
+                    eval('$res='.$action['condition']);
+                    return $res;
+                }
+                return true;
+            });
+        } 
 
         return array_filter($viewActions, function ($action) use ($excludedActions, $disabledActions) {
             return !in_array($action['name'], $excludedActions) && !in_array($action['name'], $disabledActions);
